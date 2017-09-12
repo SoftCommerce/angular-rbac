@@ -97,7 +97,7 @@ angular.module('rbac', [])
 				 */
 				if(angular.isArray(authItems)) {
 					angular.forEach(authItems, function(value) {
-						if(angular.isDefined(allowFn(value)) || angular.isDefined(processing[value]))
+						if(angular.isDefined(permissions[value]) || angular.isDefined(processing[value]))
 							return;
 
 						processing[value] = deferred.promise;
@@ -200,8 +200,8 @@ angular.module('rbac', [])
 			var resetFn = function(authItems) {
 				if(angular.isArray(authItems)) {
 					angular.forEach(authItems, function(value, key) {
-						permissions[key] = undefined;
-						processing[key] = undefined;
+						permissions[value] = undefined;
+						processing[value] = undefined;
 					});
 				} else if(angular.isDefined(authItems)) {
 					permissions[authItems] = undefined;
